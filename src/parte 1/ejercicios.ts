@@ -70,7 +70,8 @@ export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
 //
 // Si el arreglo está vacío, devolver 0.
 export function calcularPromedio(alumnos: Alumno[]): number {
-    // TODO
+    if (alumnos.length === 0) return 0;
+    return alumnos.reduce((acc, alumno) => acc + alumno.nota, 0) / alumnos.length;
     throw new Error("Implementar");
 }
 
@@ -80,7 +81,10 @@ export function calcularPromedio(alumnos: Alumno[]): number {
 // Devolver el alumno que tenga la nota más alta.
 // Si el arreglo está vacío, devolver undefined.
 export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
-    // TODO
+    if (alumnos.length === 0) return undefined;
+    return alumnos.reduce((mejor, actual) =>
+        actual.nota > mejor.nota ? actual : mejor
+);
     throw new Error("Implementar");
 }
 
@@ -93,7 +97,7 @@ export function buscarPorLegajo(
     alumnos: Alumno[],
     legajo: number
 ): Alumno | undefined {
-    // TODO
+    return alumnos.find((alumno) => alumno.legajo === legajo);
     throw new Error("Implementar");
 }
 
@@ -106,7 +110,7 @@ export function buscarPorNombre(
     alumnos: Alumno[],
     nombre: string
 ): Alumno | undefined {
-    // TODO
+    return alumnos.find((alumno) => alumno.nombre === nombre);
     throw new Error("Implementar");
 }
 
