@@ -218,14 +218,17 @@ export function filtrar<T>(
 // el criterio indicado por el callback.
 //
 // Si ningún elemento cumple, devolver undefined.
-export function buscar<T>(
-    elementos: T[],
-    callback: (elemento: T) => boolean
-): T | undefined {
+export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T | undefined {
     // TODO
-    throw new Error("Implementar");
+    for (let i = 0; i < elementos.length; i++) {
+        const elemento = elementos[i];
+        
+        if (callback(elemento!)) {
+            return elemento
+        }
+    }
+    return undefined
 }
-
 // -----------------------------------------------------------------------------
 // EJERCICIO 18 - Calcular con callback
 // -----------------------------------------------------------------------------
@@ -235,12 +238,17 @@ export function buscar<T>(
 // Ejemplos:
 // calcularTotal(alumnos, alumno => alumno.edad)
 // calcularTotal(alumnos, alumno => alumno.nota)
-export function calcularTotal(
-    alumnos: Alumno[],
-    callback: (alumno: Alumno) => number
-): number {
+export function calcularTotal(alumnos: Alumno[], callback: (alumno: Alumno) => number): number {
     // TODO
-    throw new Error("Implementar");
+    let total = 0
+    for (let i = 0; i < alumnos.length; i++) {
+        const alumno = alumnos[i];
+        const valorAlumno = callback(alumno!)
+
+        total += valorAlumno
+    }
+
+    return total
 }
 
 // -----------------------------------------------------------------------------
@@ -258,11 +266,17 @@ export function calcularTotal(
 // }
 //
 // Resolver utilizando reduce.
-export function agruparPorCiudad(
-    alumnos: Alumno[]
-): Record<string, Alumno[]> {
+export function agruparPorCiudad(alumnos: Alumno[]): Record<string, Alumno[]> {
     // TODO
-    throw new Error("Implementar");
+    return alumnos.reduce((acumulador, alumno) => {
+        if (!acumulador[alumno.ciudad]) {
+            acumulador[alumno.ciudad] = [];
+        }
+
+        acumulador[alumno.ciudad]!.push(alumno);
+
+        return acumulador
+    }, {} as Record<string, Alumno[]>);
 }
 
 // -----------------------------------------------------------------------------
@@ -285,11 +299,18 @@ export interface Estadisticas {
     mejorAlumno: Alumno | undefined;
 }
 
-export function obtenerEstadisticas(
-    alumnos: Alumno[]
-): Estadisticas {
+export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
     // TODO
-    throw new Error("Implementar");
+    const total = alumnos.length;
+    const aprobados = cantidadAprobados(alumnos);
+    
+    return {
+        cantidadTotal: total,
+        cantidadAprobados: aprobados,
+        cantidadDesaprobados: total - aprobados,
+        promedio: calcularPromedio(alumnos),
+        mejorAlumno: obtenerMejorAlumno(alumnos)
+    };
 }
 
 // -----------------------------------------------------------------------------
