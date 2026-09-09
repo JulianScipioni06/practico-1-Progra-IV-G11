@@ -15,28 +15,28 @@ export abstract class Animal {
 
 export class Perro extends Animal {
     hacerSonido(): string {
-        // TODO: devolver "Guau"
+        return "Guau"
         throw new Error("Implementar");
     }
 }
 
 export class Gato extends Animal {
     hacerSonido(): string {
-        // TODO: devolver "Miau"
+        return "Miau"
         throw new Error("Implementar");
     }
 }
 
 export class Vaca extends Animal {
     hacerSonido(): string {
-        // TODO: devolver "Muu"
+        return "Muu"
         throw new Error("Implementar");
     }
 }
 
 export class Pajaro extends Animal {
     hacerSonido(): string {
-        // TODO: devolver "Pío"
+        return "Pío"
         throw new Error("Implementar");
     }
 }
@@ -46,6 +46,9 @@ export class Pajaro extends Animal {
  * su nombre junto con el resultado de `animal.hacerSonido()`.
  */
 export function hacerSonidos(animales: Animal[]): void {
-    // TODO
+    animales.forEach((animal) => {
+        console.log(`${animal.nombre}: ${animal.hacerSonido()}`);
+    });
+    return;
     throw new Error("Implementar");
 }

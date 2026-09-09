@@ -27,6 +27,7 @@ export class Vehiculo {
 
 export class Auto extends Vehiculo {
     acelerar(): void {
+        return console.log(`${this.marca} ${this.modelo} está acelerando como un auto`);
         // TODO: loguear (console.log) un mensaje que mencione "auto"
         throw new Error("Implementar");
     }
@@ -34,6 +35,7 @@ export class Auto extends Vehiculo {
 
 export class Moto extends Vehiculo {
     acelerar(): void {
+        return console.log(`${this.marca} ${this.modelo} está acelerando como una moto`);
         // TODO: loguear un mensaje que mencione "moto"
         throw new Error("Implementar");
     }
@@ -41,6 +43,7 @@ export class Moto extends Vehiculo {
 
 export class Camion extends Vehiculo {
     acelerar(): void {
+        return console.log(`${this.marca} ${this.modelo} está acelerando como un camión`);
         // TODO: loguear un mensaje que mencione "camión"
         throw new Error("Implementar");
     }
